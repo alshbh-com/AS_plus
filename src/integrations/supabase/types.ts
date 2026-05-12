@@ -49,6 +49,7 @@ export type Database = {
           advance_date: string | null
           amount: number
           created_at: string
+          created_by: string | null
           id: string
           is_settled: boolean | null
           reason: string | null
@@ -59,6 +60,7 @@ export type Database = {
           advance_date?: string | null
           amount?: number
           created_at?: string
+          created_by?: string | null
           id?: string
           is_settled?: boolean | null
           reason?: string | null
@@ -69,6 +71,7 @@ export type Database = {
           advance_date?: string | null
           amount?: number
           created_at?: string
+          created_by?: string | null
           id?: string
           is_settled?: boolean | null
           reason?: string | null
@@ -106,6 +109,7 @@ export type Database = {
           description: string | null
           entry_date: string | null
           id: string
+          office_id: string | null
           type: string
         }
         Insert: {
@@ -115,6 +119,7 @@ export type Database = {
           description?: string | null
           entry_date?: string | null
           id?: string
+          office_id?: string | null
           type: string
         }
         Update: {
@@ -124,13 +129,23 @@ export type Database = {
           description?: string | null
           entry_date?: string | null
           id?: string
+          office_id?: string | null
           type?: string
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "cash_flow_entries_office_id_fkey"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       companies: {
         Row: {
           address: string | null
+          agreement_price: number | null
           created_at: string
           id: string
           name: string
@@ -141,6 +156,7 @@ export type Database = {
         }
         Insert: {
           address?: string | null
+          agreement_price?: number | null
           created_at?: string
           id?: string
           name: string
@@ -151,6 +167,7 @@ export type Database = {
         }
         Update: {
           address?: string | null
+          agreement_price?: number | null
           created_at?: string
           id?: string
           name?: string
@@ -232,6 +249,7 @@ export type Database = {
           id: string
           is_settled: boolean | null
           notes: string | null
+          order_id: string | null
         }
         Insert: {
           amount?: number
@@ -241,6 +259,7 @@ export type Database = {
           id?: string
           is_settled?: boolean | null
           notes?: string | null
+          order_id?: string | null
         }
         Update: {
           amount?: number
@@ -250,8 +269,17 @@ export type Database = {
           id?: string
           is_settled?: boolean | null
           notes?: string | null
+          order_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "courier_collections_order_id_fkey"
+            columns: ["order_id"]
+            isOneToOne: false
+            referencedRelation: "orders"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       courier_locations: {
         Row: {
@@ -286,6 +314,8 @@ export type Database = {
           created_at: string
           governorate: string
           id: string
+          office_id: string | null
+          pickup_price: number | null
           price: number
         }
         Insert: {
@@ -293,6 +323,8 @@ export type Database = {
           created_at?: string
           governorate: string
           id?: string
+          office_id?: string | null
+          pickup_price?: number | null
           price?: number
         }
         Update: {
@@ -300,41 +332,60 @@ export type Database = {
           created_at?: string
           governorate?: string
           id?: string
+          office_id?: string | null
+          pickup_price?: number | null
           price?: number
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "delivery_prices_office_id_fkey"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       diaries: {
         Row: {
           created_at: string
           diary_date: string | null
+          diary_number: string | null
           id: string
           is_archived: boolean | null
           is_closed: boolean | null
+          lock_status_updates: boolean | null
           notes: string | null
           office_id: string | null
+          prevent_new_orders: boolean | null
           title: string | null
           updated_at: string
         }
         Insert: {
           created_at?: string
           diary_date?: string | null
+          diary_number?: string | null
           id?: string
           is_archived?: boolean | null
           is_closed?: boolean | null
+          lock_status_updates?: boolean | null
           notes?: string | null
           office_id?: string | null
+          prevent_new_orders?: boolean | null
           title?: string | null
           updated_at?: string
         }
         Update: {
           created_at?: string
           diary_date?: string | null
+          diary_number?: string | null
           id?: string
           is_archived?: boolean | null
           is_closed?: boolean | null
+          lock_status_updates?: boolean | null
           notes?: string | null
           office_id?: string | null
+          prevent_new_orders?: boolean | null
           title?: string | null
           updated_at?: string
         }
@@ -419,6 +470,7 @@ export type Database = {
           expense_name: string
           id: string
           notes: string | null
+          office_id: string | null
         }
         Insert: {
           amount?: number
@@ -429,6 +481,7 @@ export type Database = {
           expense_name: string
           id?: string
           notes?: string | null
+          office_id?: string | null
         }
         Update: {
           amount?: number
@@ -439,8 +492,17 @@ export type Database = {
           expense_name?: string
           id?: string
           notes?: string | null
+          office_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "expenses_office_id_fkey"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
+        ]
       }
       messages: {
         Row: {
@@ -556,6 +618,7 @@ export type Database = {
           notes: string | null
           office_id: string
           payment_date: string | null
+          type: string | null
         }
         Insert: {
           amount?: number
@@ -564,6 +627,7 @@ export type Database = {
           notes?: string | null
           office_id: string
           payment_date?: string | null
+          type?: string | null
         }
         Update: {
           amount?: number
@@ -572,6 +636,7 @@ export type Database = {
           notes?: string | null
           office_id?: string
           payment_date?: string | null
+          type?: string | null
         }
         Relationships: [
           {
@@ -592,7 +657,9 @@ export type Database = {
           notes: string | null
           office_commission: number | null
           owner_name: string | null
+          owner_phone: string | null
           phone: string | null
+          specialty: string | null
           updated_at: string
         }
         Insert: {
@@ -603,7 +670,9 @@ export type Database = {
           notes?: string | null
           office_commission?: number | null
           owner_name?: string | null
+          owner_phone?: string | null
           phone?: string | null
+          specialty?: string | null
           updated_at?: string
         }
         Update: {
@@ -614,7 +683,9 @@ export type Database = {
           notes?: string | null
           office_commission?: number | null
           owner_name?: string | null
+          owner_phone?: string | null
           phone?: string | null
+          specialty?: string | null
           updated_at?: string
         }
         Relationships: []
@@ -707,7 +778,7 @@ export type Database = {
           returned_to_sender: boolean | null
           returned_to_sender_at: string | null
           returned_to_sender_by: string | null
-          shipping_paid: boolean | null
+          shipping_paid: number | null
           size: string | null
           status_id: string | null
           street: string | null
@@ -745,7 +816,7 @@ export type Database = {
           returned_to_sender?: boolean | null
           returned_to_sender_at?: string | null
           returned_to_sender_by?: string | null
-          shipping_paid?: boolean | null
+          shipping_paid?: number | null
           size?: string | null
           status_id?: string | null
           street?: string | null
@@ -783,7 +854,7 @@ export type Database = {
           returned_to_sender?: boolean | null
           returned_to_sender_at?: string | null
           returned_to_sender_by?: string | null
-          shipping_paid?: boolean | null
+          shipping_paid?: number | null
           size?: string | null
           status_id?: string | null
           street?: string | null
@@ -853,42 +924,48 @@ export type Database = {
       }
       profiles: {
         Row: {
+          address: string | null
           avatar_url: string | null
           can_add_orders: boolean | null
           commission_amount: number | null
-          coverage_areas: string[] | null
+          coverage_areas: string | null
           created_at: string
           full_name: string | null
           id: string
           login_code: string | null
+          notes: string | null
           office_id: string | null
           phone: string | null
           salary: number | null
           updated_at: string
         }
         Insert: {
+          address?: string | null
           avatar_url?: string | null
           can_add_orders?: boolean | null
           commission_amount?: number | null
-          coverage_areas?: string[] | null
+          coverage_areas?: string | null
           created_at?: string
           full_name?: string | null
           id: string
           login_code?: string | null
+          notes?: string | null
           office_id?: string | null
           phone?: string | null
           salary?: number | null
           updated_at?: string
         }
         Update: {
+          address?: string | null
           avatar_url?: string | null
           can_add_orders?: boolean | null
           commission_amount?: number | null
-          coverage_areas?: string[] | null
+          coverage_areas?: string | null
           created_at?: string
           full_name?: string | null
           id?: string
           login_code?: string | null
+          notes?: string | null
           office_id?: string | null
           phone?: string | null
           salary?: number | null
