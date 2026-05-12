@@ -46,8 +46,8 @@ export default function Settings() {
       .eq('key', 'accounting_password')
       .maybeSingle();
     if (data?.value) {
-      setCurrentAccountingPassword(data.value);
-      setAccountingPassword(data.value);
+      setCurrentAccountingPassword(String(data.value));
+      setAccountingPassword(String(data.value));
     }
   };
 

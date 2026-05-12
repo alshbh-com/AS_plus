@@ -80,7 +80,7 @@ export function exportReportPDF(
   </style></head><body>
     <div class="header">
       <h1>${meta.title}</h1>
-      <div class="brand">The Pilito - نظام الشحن</div>
+      <div class="brand">A&S Express - نظام الشحن</div>
       ${meta.subtitle ? `<div class="sub">${meta.subtitle}</div>` : ''}
     </div>
     ${meta.filtersText ? `<div class="filters"><b>التصفية:</b> ${meta.filtersText}</div>` : ''}
@@ -170,6 +170,6 @@ export function buildWhatsAppSummary(meta: ReportMeta, rowCount: number): string
     meta.summary.forEach(s => lines.push(`• ${s.label}: ${s.value}`));
   }
   lines.push('');
-  lines.push('_The Pilito - نظام الشحن_');
+  lines.push('_A&S Express - نظام الشحن_');
   return lines.join('\n');
 }
