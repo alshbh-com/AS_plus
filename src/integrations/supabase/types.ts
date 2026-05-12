@@ -249,6 +249,7 @@ export type Database = {
           id: string
           is_settled: boolean | null
           notes: string | null
+          office_id: string | null
           order_id: string | null
         }
         Insert: {
@@ -259,6 +260,7 @@ export type Database = {
           id?: string
           is_settled?: boolean | null
           notes?: string | null
+          office_id?: string | null
           order_id?: string | null
         }
         Update: {
@@ -269,9 +271,17 @@ export type Database = {
           id?: string
           is_settled?: boolean | null
           notes?: string | null
+          office_id?: string | null
           order_id?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "courier_collections_office_id_fkey"
+            columns: ["office_id"]
+            isOneToOne: false
+            referencedRelation: "offices"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "courier_collections_order_id_fkey"
             columns: ["order_id"]
@@ -577,6 +587,7 @@ export type Database = {
           amount: number
           category: string | null
           created_at: string
+          created_by: string | null
           description: string | null
           expense_date: string | null
           id: string
@@ -586,6 +597,7 @@ export type Database = {
           amount?: number
           category?: string | null
           created_at?: string
+          created_by?: string | null
           description?: string | null
           expense_date?: string | null
           id?: string
@@ -595,6 +607,7 @@ export type Database = {
           amount?: number
           category?: string | null
           created_at?: string
+          created_by?: string | null
           description?: string | null
           expense_date?: string | null
           id?: string
@@ -651,6 +664,7 @@ export type Database = {
       offices: {
         Row: {
           address: string | null
+          can_add_orders: boolean | null
           created_at: string
           id: string
           name: string
@@ -664,6 +678,7 @@ export type Database = {
         }
         Insert: {
           address?: string | null
+          can_add_orders?: boolean | null
           created_at?: string
           id?: string
           name: string
@@ -677,6 +692,7 @@ export type Database = {
         }
         Update: {
           address?: string | null
+          can_add_orders?: boolean | null
           created_at?: string
           id?: string
           name?: string
