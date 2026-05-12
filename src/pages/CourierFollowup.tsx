@@ -25,7 +25,7 @@ interface Order {
 interface Office { id: string; name: string; owner_name?: string; }
 
 const DEFAULT_TEMPLATE = `السلام عليكم {customer_name} 🌷
-معاك متابعة شركة The Pilito بخصوص أوردر رقم {barcode}
+معاك متابعة شركة A&S Express بخصوص أوردر رقم {barcode}
 المنتج: {product_name}
 سعر المنتج: {price} جنيه
 سعر الشحن: {shipping} جنيه
