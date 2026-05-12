@@ -35,7 +35,7 @@ export default function AccountingPasswordGate({ children }: Props) {
         .eq('key', 'accounting_password')
         .maybeSingle();
 
-      setStoredPassword(data?.value || null);
+      setStoredPassword(data?.value ? String(data.value) : null);
       setLoading(false);
 
       // If no password is set, allow access (owner should set one)

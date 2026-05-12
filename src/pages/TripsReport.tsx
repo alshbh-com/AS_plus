@@ -53,7 +53,7 @@ export default function TripsReport() {
   useEffect(() => {
     supabase.from('app_settings').select('value').eq('key', 'trip_extras_v1').maybeSingle().then(({ data }) => {
       if (data?.value) {
-        try { setTripExtras(JSON.parse(data.value)); } catch { /* ignore */ }
+        try { setTripExtras(JSON.parse(String(data.value))); } catch { /* ignore */ }
       }
     });
   }, []);
