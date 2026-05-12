@@ -109,7 +109,9 @@ export type Database = {
           description: string | null
           entry_date: string | null
           id: string
+          notes: string | null
           office_id: string | null
+          reason: string | null
           type: string
         }
         Insert: {
@@ -119,7 +121,9 @@ export type Database = {
           description?: string | null
           entry_date?: string | null
           id?: string
+          notes?: string | null
           office_id?: string | null
+          reason?: string | null
           type: string
         }
         Update: {
@@ -129,7 +133,9 @@ export type Database = {
           description?: string | null
           entry_date?: string | null
           id?: string
+          notes?: string | null
           office_id?: string | null
+          reason?: string | null
           type?: string
         }
         Relationships: [
@@ -219,6 +225,7 @@ export type Database = {
           bonus_date: string | null
           courier_id: string
           created_at: string
+          created_by: string | null
           id: string
           reason: string | null
         }
@@ -227,6 +234,7 @@ export type Database = {
           bonus_date?: string | null
           courier_id: string
           created_at?: string
+          created_by?: string | null
           id?: string
           reason?: string | null
         }
@@ -235,6 +243,7 @@ export type Database = {
           bonus_date?: string | null
           courier_id?: string
           created_at?: string
+          created_by?: string | null
           id?: string
           reason?: string | null
         }
@@ -591,6 +600,7 @@ export type Database = {
           description: string | null
           expense_date: string | null
           id: string
+          notes: string | null
           office_id: string
         }
         Insert: {
@@ -601,6 +611,7 @@ export type Database = {
           description?: string | null
           expense_date?: string | null
           id?: string
+          notes?: string | null
           office_id: string
         }
         Update: {
@@ -611,6 +622,7 @@ export type Database = {
           description?: string | null
           expense_date?: string | null
           id?: string
+          notes?: string | null
           office_id?: string
         }
         Relationships: [
